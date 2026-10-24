@@ -1,0 +1,12 @@
+.env 
+.env.backup 
+.env.production 
+.env.local
+/mysql-data
+/db_data
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+\*.swp
+\*.swo
