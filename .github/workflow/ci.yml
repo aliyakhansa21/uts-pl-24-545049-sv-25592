@@ -1,0 +1,90 @@
+name: CI/CD Pipeline Manajemen Inventaris
+
+on:
+  push:
+    branches: [ "main", "dev", "feat/*" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  test-backend:
+    name: Pengujian Backend (Laravel)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, zip, gd
+          
+      - name: Install Composer Dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-progress --no-suggest
+        
+      - name: Copy .env and Generate Key
+        working-directory: ./backend
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          
+      - name: Run Feature Tests
+        working-directory: ./backend
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: |
+          touch database/database.sqlite
+          php artisan migrate
+          php artisan test
+
+  build-frontend:
+    name: Build Frontend (Vue.js)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Dependencies & Build
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm run build
+
+  deploy:
+    name: Deploy to GHCR
+    needs: [test-backend, build-frontend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Build and Push Backend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/inventaris-backend:${{ github.sha }}
+          
+      - name: Build and Push Frontend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/inventaris-frontend:${{ github.sha }}
