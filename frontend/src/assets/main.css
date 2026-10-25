@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   🌸 Y2K AESTHETIC THEME - Custom CSS
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --y2k-pink: #ff69b4;
+  --y2k-hot-pink: #ff00ff;
+  --y2k-magenta: #e91e9c;
+  --y2k-cyan: #00e5ff;
+  --y2k-baby-blue: #89cff0;
+  --y2k-lavender: #c8a2ff;
+  --y2k-chrome: #c0c0c0;
+  --y2k-chrome-light: #e8e8e8;
+  --y2k-dark: #1a0025;
+  --y2k-grid-color: rgba(255, 0, 255, 0.08);
+}
+
+/* ---------- Y2K Grid Background ---------- */
+.y2k-grid-bg {
+  background-color: #0d001a;
+  background-image:
+    linear-gradient(var(--y2k-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--y2k-grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  position: relative;
+}
+
+.y2k-grid-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255, 0, 255, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(0, 229, 255, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 50% 80%, rgba(200, 162, 255, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Glassmorphism Card ---------- */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 105, 180, 0.25);
+  border-radius: 16px;
+  box-shadow:
+    0 0 15px rgba(255, 0, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-cyan {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(0, 229, 255, 0.25);
+  border-radius: 16px;
+  box-shadow:
+    0 0 15px rgba(0, 229, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Bubbly Buttons ---------- */
+.btn-y2k {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-y2k:active {
+  transform: scale(0.95);
+}
+
+.btn-y2k-pink {
+  background: linear-gradient(135deg, #ff69b4, #ff00ff);
+  color: #fff;
+  box-shadow: 0 4px 0px #b3006b, 0 0 20px rgba(255, 0, 255, 0.25);
+}
+.btn-y2k-pink:hover {
+  box-shadow: 0 4px 0px #b3006b, 0 0 30px rgba(255, 0, 255, 0.45);
+  transform: translateY(-2px);
+}
+.btn-y2k-pink:active {
+  box-shadow: 0 1px 0px #b3006b, 0 0 15px rgba(255, 0, 255, 0.2);
+  transform: translateY(2px);
+}
+
+.btn-y2k-cyan {
+  background: linear-gradient(135deg, #00e5ff, #00b8d4);
+  color: #0d001a;
+  box-shadow: 0 4px 0px #007c91, 0 0 20px rgba(0, 229, 255, 0.2);
+}
+.btn-y2k-cyan:hover {
+  box-shadow: 0 4px 0px #007c91, 0 0 30px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+}
+.btn-y2k-cyan:active {
+  box-shadow: 0 1px 0px #007c91, 0 0 15px rgba(0, 229, 255, 0.15);
+  transform: translateY(2px);
+}
+
+.btn-y2k-chrome {
+  background: linear-gradient(135deg, #e8e8e8, #c0c0c0);
+  color: #1a0025;
+  box-shadow: 0 4px 0px #888, 0 0 10px rgba(192, 192, 192, 0.15);
+}
+.btn-y2k-chrome:hover {
+  box-shadow: 0 4px 0px #888, 0 0 20px rgba(192, 192, 192, 0.3);
+  transform: translateY(-2px);
+}
+.btn-y2k-chrome:active {
+  box-shadow: 0 1px 0px #888;
+  transform: translateY(2px);
+}
+
+.btn-y2k-danger {
+  background: linear-gradient(135deg, #ff4060, #ff0040);
+  color: #fff;
+  box-shadow: 0 4px 0px #990024, 0 0 20px rgba(255, 0, 64, 0.2);
+}
+.btn-y2k-danger:hover {
+  box-shadow: 0 4px 0px #990024, 0 0 30px rgba(255, 0, 64, 0.4);
+  transform: translateY(-2px);
+}
+.btn-y2k-danger:active {
+  box-shadow: 0 1px 0px #990024;
+  transform: translateY(2px);
+}
+
+/* ---------- Y2K Input Fields ---------- */
+.input-y2k {
+  font-family: 'Space Grotesk', sans-serif;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 105, 180, 0.2);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #f0e6ff;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  outline: none;
+  width: 100%;
+}
+
+.input-y2k::placeholder {
+  color: rgba(200, 162, 255, 0.4);
+}
+
+.input-y2k:focus {
+  border-color: var(--y2k-hot-pink);
+  box-shadow: 0 0 0 3px rgba(255, 0, 255, 0.12), 0 0 20px rgba(255, 0, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.input-y2k.input-error {
+  border-color: #ff4060;
+  box-shadow: 0 0 0 3px rgba(255, 64, 96, 0.15), 0 0 15px rgba(255, 64, 96, 0.08);
+}
+
+.input-y2k.input-success {
+  border-color: #39ff8a;
+  box-shadow: 0 0 0 3px rgba(57, 255, 138, 0.1);
+}
+
+/* ---------- Validation Messages ---------- */
+.validation-msg {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.validation-msg.error {
+  color: #ff6b8a;
+}
+
+.validation-msg.success {
+  color: #39ff8a;
+}
+
+/* ---------- Y2K Table ---------- */
+.table-y2k {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.table-y2k thead th {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--y2k-cyan);
+  padding: 14px 16px;
+  border-bottom: 2px solid rgba(0, 229, 255, 0.2);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table-y2k tbody td {
+  padding: 14px 16px;
+  color: #e0d0ff;
+  border-bottom: 1px solid rgba(255, 105, 180, 0.08);
+  font-size: 0.88rem;
+}
+
+.table-y2k tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table-y2k tbody tr:hover {
+  background-color: rgba(255, 0, 255, 0.04);
+}
+
+/* ---------- Stat Badge ---------- */
+.stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.stat-badge-pink {
+  background: rgba(255, 0, 255, 0.12);
+  color: #ff69b4;
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.stat-badge-cyan {
+  background: rgba(0, 229, 255, 0.1);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.stat-badge-lavender {
+  background: rgba(200, 162, 255, 0.1);
+  color: #c8a2ff;
+  border: 1px solid rgba(200, 162, 255, 0.2);
+}
+
+/* ---------- Neon Divider ---------- */
+.neon-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--y2k-hot-pink), var(--y2k-cyan), transparent);
+  opacity: 0.4;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--y2k-pink), var(--y2k-hot-pink));
+  border-radius: 3px;
+}
+
+/* ---------- Pixel Font Header ---------- */
+.font-pixel {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.font-body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ---------- Y2K Glow Text ---------- */
+.text-glow-pink {
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.4), 0 0 30px rgba(255, 0, 255, 0.15);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+/* ---------- Holographic shimmer ---------- */
+@keyframes holo-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.holo-text {
+  background: linear-gradient(
+    90deg,
+    #ff69b4,
+    #00e5ff,
+    #c8a2ff,
+    #ff69b4,
+    #00e5ff
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holo-shimmer 4s linear infinite;
+}
+
+/* ---------- Star sparkle ---------- */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Responsive Table Container ---------- */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- Delete Confirm Modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 0, 26, 0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* ---------- Toast notification ---------- */
+.toast-y2k {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(12px);
+  animation: toast-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-success {
+  background: rgba(57, 255, 138, 0.12);
+  border: 1px solid rgba(57, 255, 138, 0.3);
+  color: #39ff8a;
+  box-shadow: 0 0 20px rgba(57, 255, 138, 0.08);
+}
+
+.toast-error {
+  background: rgba(255, 64, 96, 0.12);
+  border: 1px solid rgba(255, 64, 96, 0.3);
+  color: #ff6b8a;
+  box-shadow: 0 0 20px rgba(255, 64, 96, 0.08);
+}
+
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(-16px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
